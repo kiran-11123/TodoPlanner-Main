@@ -6,7 +6,7 @@ const ConnectDb = async ()=>{
     
     try{
 
-        await mongoose.connect("mongodb://localhost:27017/Todo-Planner",{
+        await mongoose.connect("mongodb://localhost:27017/EventPlanner",{
              useNewUrlParser: true,
            useUnifiedTopology: true,
         })

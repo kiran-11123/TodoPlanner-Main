@@ -6,7 +6,7 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 const Auth_router = express.Router();
 import cookieParser from 'cookie-parser';
-const My_Secret = "Kiran is a good boy"
+const My_Secret = process.env.SECRET_KEY;
 
 
 
@@ -40,7 +40,7 @@ Auth_router.post("/signin" ,  async (req,res)=>{
             })
         }
 
-        const token_details = {"username":usercheck.username  , "userId":usercheck.userId}
+        const token_details = {"username":usercheck.username  , "userId":usercheck.userId , "email":usercheck.email}
 
         const token = jwt.sign(token_details , My_Secret , {
             expiresIn:"1h"

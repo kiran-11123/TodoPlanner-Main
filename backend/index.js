@@ -5,7 +5,8 @@ import dotenv from "dotenv"
 import cookieParser from "cookie-parser"
 import Auth_router from "./routes/Authentication_routes.js"
 import ConnectDb from "./Mongodb/db.js"
-import User_Router from "./routes/TodoPlanner.js"
+import User_Router from "./routes/AllEvents.js"
+import AllEvents_Router from "./routes/AllEvents.js"
 
 dotenv.config()
 const app = express();
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(cors());
 app.use("/api/auth", Auth_router);
 app.use("/api/user" , User_Router);
+app.use("/api/events",AllEvents_Router);
 
 app.use(cookieParser());
 await ConnectDb();
