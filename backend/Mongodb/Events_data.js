@@ -15,7 +15,7 @@ const Events_details = new mongoose.Schema({
 })
 
 
-const Event_data = mongoose.model(Events_data , Events_details);
+const Event_data = mongoose.model("Events_data" , Events_details);
 
 
 export default Event_data;

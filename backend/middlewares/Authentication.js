@@ -4,15 +4,15 @@ import dotenv from 'dotenv'
 
 dotenv.config();
 
-const secret = process.env.SECRET_KEY
+const secret = process.env.SECRET_KEY;
 
 const Authentication_token = (req,res,next)=>{
 
-    const token =req.cookies?.token;
-
+    const token = req.cookies?.token;
+    console.log("Token from cookie:", token);
 
     if(!token){
-         return res.status(400).json({
+         return res.status(401).json({
             message:"Unauthorized: No token found"
          })
     }
@@ -27,7 +27,7 @@ const Authentication_token = (req,res,next)=>{
     }
     catch(er){
 
-        return res.status(500).json({
+        return res.status(401).json({
             message:"Invalid token",
             error:er
         })

@@ -8,16 +8,21 @@ import ConnectDb from "./Mongodb/db.js"
 import User_Router from "./routes/AllEvents.js"
 import AllEvents_Router from "./routes/AllEvents.js"
 
+
+await ConnectDb();
 dotenv.config()
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cookieParser());
+app.use(cors({
+  origin: 'http://localhost:3001',
+  credentials: true
+}));
 app.use("/api/auth", Auth_router);
 app.use("/api/user" , User_Router);
 app.use("/api/events",AllEvents_Router);
 
-app.use(cookieParser());
-await ConnectDb();
+
 
 
 

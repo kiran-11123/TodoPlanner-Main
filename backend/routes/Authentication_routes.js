@@ -83,6 +83,18 @@ Auth_router.post("/signup" , async(req,res)=>{
 
         const {email , username , password} = req.body;
 
+        const user_email_check = await prisma.user.findUnique({
+            where:{
+                email:email
+            }
+        })
+
+        if(user_email_check) {
+            return res.status(400).json({
+                message:"Email Already Registered , Please Login !"
+            })
+        }
+
         const username_check = await prisma.user.findUnique({
             where:{
                 username :username
