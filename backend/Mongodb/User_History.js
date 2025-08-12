@@ -16,12 +16,13 @@ const User_Details = new mongoose.Schema({
 
           EventName:String,
           EventImage:String,
-          EventDate:String,
+          EventDate:Date,
           Duration:String,
           OrganizedBy:String,
           StartTime:String,
           EndTime:String,
           Totaltickets:Number,
+          Status:String,
             
             
            
