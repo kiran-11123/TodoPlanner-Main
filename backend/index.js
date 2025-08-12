@@ -7,7 +7,14 @@ import Auth_router from "./routes/Authentication_routes.js"
 import ConnectDb from "./Mongodb/db.js"
 import User_Router from "./routes/AllEvents.js"
 import AllEvents_Router from "./routes/AllEvents.js"
+import rateLimit from 'express-rate-limit';
 
+const limiter = rateLimit({
+    
+  windowMs:15*60*1000,
+  max:100,
+  message:"Too Many requsts , Please try again later"
+})
 
 await ConnectDb();
 dotenv.config()
@@ -18,6 +25,7 @@ app.use(cors({
   origin: 'http://localhost:3001',
   credentials: true
 }));
+app.use(limiter);
 app.use("/api/auth", Auth_router);
 app.use("/api/user" , User_Router);
 app.use("/api/events",AllEvents_Router);

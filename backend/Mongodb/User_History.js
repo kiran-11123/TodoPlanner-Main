@@ -20,7 +20,8 @@ const User_Details = new mongoose.Schema({
           Duration:String,
           OrganizedBy:String,
           StartTime:String,
-          EndTime:String
+          EndTime:String,
+          Totaltickets:Number,
             
             
            

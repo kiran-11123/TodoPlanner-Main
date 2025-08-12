@@ -10,7 +10,9 @@ const Events_details = new mongoose.Schema({
           Duration:String,
           OrganizedBy:String,
           StartTime:String,
-          EndTime:String
+          EndTime:String,
+          EventType:String,
+          Price:Number,
 
 })
 
