@@ -8,6 +8,7 @@ const Events_details = new mongoose.Schema({
           EventImage:String,
           EventDate:Date,
           Duration:String,
+          Venue:String,
           OrganizedBy:String,
           StartTime:String,
           EndTime:String,
