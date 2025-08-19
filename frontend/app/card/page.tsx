@@ -14,10 +14,10 @@ export default function Card() {
             }`}
         >
             <img
-                src="image.png"
+                src="/image.jpg"
                 alt="Card image"
-                className={`object-cover rounded-lg opacity-90 ${
-                    expanded ? "w-full h-96" : "w-full h-48"
+                className={`object-cover border-2 rounded-lg opacity-90 ${
+                    expanded ? " h-70 w-full " : "w-full h-60"
                 }`}
             />
 
@@ -28,6 +28,29 @@ export default function Card() {
             <p className="text-gray-600 text-base text-center">
                 Card description goes here.
             </p>
+
+            {expanded && (
+                 
+                 <div className="w-full mt-2 flex flex-col items-center gap-4">
+                    
+                    <div className="flex w-full items-center justify-evenly">
+                        <p className="text-lg text-black  text-center">Event Date </p>
+                        <p className="text-lg text-black text-center">Event Venue</p>
+                        <p className="text-lg text-black text-center"> Event Duration</p>
+                        <p className="text-lg text-black text-center">Start Time</p>
+                        <p className="text-lg text-black text-center"> Organized By</p>
+                        <p className="text-lg text-black text-center">Ticket Price </p>
+                    </div>
+
+                  
+
+                    <button className="px-4 py-2 border-1 rounded-lg bg-white font-bold ">Buy Ticket</button>
+
+                    
+                 </div>
+
+                 
+            )}
 
             <button
                 className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
