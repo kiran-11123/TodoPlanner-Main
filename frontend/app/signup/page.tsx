@@ -14,20 +14,56 @@ export default function Signup(){
     async function submitForm(e:any) {
         e.preventDefault();
 
-        const response = await axios.post("http://localhost:3000/api/auth/signup" ,{
+         try{
+         const response = await axios.post("http://localhost:3000/api/auth/signup", {
+             email:email,
+             username:username,
+             password:Password,
+         },{
+            withCredentials: true
+         });
 
-            email:email,
-            username:username,
-            password:Password
-        })
+    console.log(response)
 
-        if(response.status===200){
-             setMessage("User Registered Successfully");
+    if(response.status === 200) {
+        setMessage('User Registered  successful');
+        
+    setTimeout(()=>{
+        setMessage('')
+        setEmail('')
+        setPassword('')
+        setUsername('')
+    },3000)
+        
+        
+    } else {
+        setMessage(response.data.message);
+    }
+
+
+}
+
+  catch(er) {
+    if (typeof er === "object" && er !== null && "response" in er) {
+        const error = er as any;
+        if (error.response && error.response.data && error.response.data.message) {
+            setMessage(error.response.data.message);
+        } else {
+            setMessage('error in login');
         }
-        else{
-            setMessage(response.data.message);
-        }
+    } else {
+        setMessage('error in login');
+    }
 
+    
+   setTimeout(()=>{
+        setMessage('')
+        setEmail('')
+        setPassword('')
+        setUsername('')
+    },3000)
+        
+}
         
     }
 
@@ -49,7 +85,7 @@ export default function Signup(){
                             Email
                         </label>
 
-                        <input onChange={(e)=>setEmail(e.target.value)}  className="w-full px-4 py-2 rounded-md border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"  placeholder="Enter your Email"  type="email"/>
+                        <input onChange={(e)=>setEmail(e.target.value)} value={email} required className="w-full px-4 py-2 rounded-md border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"  placeholder="Enter your Email"  type="email"/>
                     </div>
 
                     <div>
@@ -57,7 +93,7 @@ export default function Signup(){
                             Username
                         </label>
 
-                        <input onChange={(e)=>setUsername(e.target.value)}  className="w-full px-4 py-2 rounded-md border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"  placeholder="Enter Username"  type="Password"/>
+                        <input onChange={(e)=>setUsername(e.target.value)} value={username} required className="w-full px-4 py-2 rounded-md border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"  placeholder="Enter Username"  type="text"/>
                     </div>
 
 
@@ -67,7 +103,7 @@ export default function Signup(){
                             Password
                         </label>
 
-                        <input onChange={(e)=>setPassword(e.target.value)} className="w-full px-4 py-2 rounded-md border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"  placeholder="Enter your Password"  type="Password"/>
+                        <input onChange={(e)=>setPassword(e.target.value)} value={Password} required className="w-full px-4 py-2 rounded-md border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"  placeholder="Enter your Password"  type="Password"/>
                     </div>
 
 
@@ -92,7 +128,7 @@ export default function Signup(){
 
                 {message && (
 
-                    <p className="font-black text-center text-lg sm:text-xl">{message}</p>
+                    <p className="font-black text-center text-md sm:text-lg mb-10">{message}</p>
                 )}
 
             </div>
