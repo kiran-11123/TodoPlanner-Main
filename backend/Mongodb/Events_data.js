@@ -13,7 +13,7 @@ const Events_details = new mongoose.Schema({
           StartTime:String,
           EndTime:String,
           EventType:String,
-          TotalTickets:String,
+          TotalTickets:Number,
           Price:Number,
 
 })

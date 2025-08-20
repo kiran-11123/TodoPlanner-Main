@@ -13,6 +13,16 @@ export default function Card() {
                     : "max-w-sm sm:max-w-md"
             }`}
         >
+
+            {expanded && (
+                <button
+                    className="absolute top-4 right-5 text-xl bg-red-600 text-white rounded-lg px-3 py-1 hover:bg-red-700 transition z-10"
+                    onClick={() => setExpanded(false)}
+                    aria-label="Close"
+                >
+                    ✕
+                </button>
+            )}
             <img
                 src="/image.jpg"
                 alt="Card image"
@@ -31,33 +41,31 @@ export default function Card() {
 
             {expanded && (
                  
-                 <div className="w-full mt-2 flex flex-col items-center gap-4">
-                    
-                    <div className="flex w-full items-center justify-evenly">
-                        <p className="text-lg text-black  text-center">Event Date </p>
-                        <p className="text-lg text-black text-center">Event Venue</p>
-                        <p className="text-lg text-black text-center"> Event Duration</p>
-                        <p className="text-lg text-black text-center">Start Time</p>
-                        <p className="text-lg text-black text-center"> Organized By</p>
-                        <p className="text-lg text-black text-center">Ticket Price </p>
-                    </div>
+            <div className="w-full mt-2 flex flex-col items-center gap-6">
+                <div className="flex flex-col sm:flex-row w-full justify-between items-center gap-4">
+                    <p className="text-lg text-black text-center sm:text-left">Event Date: <span className="font-semibold">25 August</span></p>
+                    <p className="text-lg text-black text-center sm:text-left">Event Venue: <span className="font-semibold">XYZ Auditorium</span></p>
+                    <p className="text-lg text-black text-center sm:text-left">Start Time: <span className="font-semibold">10:00 AM</span></p>
+                </div>
 
-                  
-
-                    <button className="px-4 py-2 border-1 rounded-lg bg-white font-bold ">Buy Ticket</button>
-
-                    
-                 </div>
+                <div className="flex flex-col sm:flex-row w-full justify-between items-center gap-4">
+                    <p className="text-lg text-black text-center sm:text-left">Ticket Price: <span className="font-semibold">5000</span></p>
+                    <button className="px-4 py-2 border rounded-lg bg-blue-600 text-white font-bold hover:bg-blue-700 transition">Buy Ticket</button>
+                    <p className="text-md sm:text-lg text-black text-center sm:text-left">Organized By: <span className="font-semibold">ABC Events</span></p>
+                </div>
+            </div>
 
                  
             )}
 
-            <button
-                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
-                onClick={() => setExpanded(!expanded)}
-            >
-                {expanded ? "Close" : "View details"}
-            </button>
+           {!expanded && (
+                <button
+                    className="px-4 py-2 rounded-lg font-bold bg-blue-600 text-white hover:bg-blue-700 transition"
+                    onClick={() => setExpanded(true)}
+                >
+                    View details
+                </button>
+            )}
         </div>
     );
 }

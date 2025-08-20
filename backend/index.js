@@ -8,6 +8,7 @@ import ConnectDb from "./Mongodb/db.js"
 import User_Router from "./routes/AllEvents.js"
 import AllEvents_Router from "./routes/AllEvents.js"
 import rateLimit from 'express-rate-limit';
+import UploadRouter from "./routes/EventUpload.js"
 
 const limiter = rateLimit({
     
@@ -28,7 +29,8 @@ app.use(cors({
 app.use(limiter);
 app.use("/api/auth", Auth_router);
 app.use("/api/user" , User_Router);
-app.use("/api/events",AllEvents_Router);
+app.use("/api/eventsData",AllEvents_Router);
+app.use("/api/eventUpload" , UploadRouter);
 
 
 
