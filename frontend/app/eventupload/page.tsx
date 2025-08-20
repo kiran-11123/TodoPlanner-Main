@@ -53,15 +53,45 @@ export default function EventUpload(){
             formData.append("Price", Price.toString());
 
 
-            const response = await axios.post("http://localhost:3000/api/eventUpload/upload" , formData);
+            const response = await axios.post("http://localhost:3000/api/eventUpload/upload" , formData,{
+                withCredentials: true,
+            });
+
+            if(response.data.message){
+            
+            SetMessage(response.data.message);
+
+            setTimeout(()=>{
+                SetMessage('');
+
+            },2000);
+
+            if(response.data.success){
+               SetMessage('Event uploaded successfully');
+                SetEventName('');
+                SetEventImage(null);
+                SetEventDate('');
+                SetEventDuration('');
+                SetEventVenue('');
+                SetOrganizedBy('');
+                setStart('');
+                setEnd('');
+                SetEventType('');
+                SetTotalTickets(0);
+                SetPrice(0);
+            }
 
         }
-        catch(er){
+      
+
+
+    }
+
+      catch(er){
             console.log(er);
             SetMessage("Something went wrong")
 
         }
-
 
     }
 

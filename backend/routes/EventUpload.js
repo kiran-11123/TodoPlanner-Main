@@ -1,6 +1,6 @@
 import express from 'express'
 import mongoose from 'mongoose'
-import Event_data from '../Mongodb/Events_data';
+import Event_data from '../Mongodb/Events_data.js';
 const UploadRouter = express.Router();
 import multer from 'multer';
 

@@ -1,7 +1,7 @@
 import express from 'express';
 const AllEvents_Router = express.Router();
 import Authentication_token from '../middlewares/Authentication.js';
-import Event_data from '../Mongodb/Events_data.js';
+import Event_data from  '../Mongodb/Events_data.js';
 
 
 
@@ -11,13 +11,15 @@ AllEvents_Router.get("/allEvents", Authentication_token,async ( req,res)=>{
 
     try{
 
+        console.log("Triggered")
+
      
 
         const AllData = await Event_data.find();
 
         if(AllData.length===0){
 
-            return res.status(200).json({
+            return res.status(404).json({
                 message:"No Events Present , At this time ",
                 TotalData:[]
             })

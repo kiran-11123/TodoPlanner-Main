@@ -23,7 +23,7 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin: 'http://localhost:3001',
+  origin: 'http://localhost:3000',
   credentials: true
 }));
 app.use(limiter);
@@ -44,6 +44,6 @@ app.use("/api/eventUpload" , UploadRouter);
 
 
 
-app.listen(3000 , ()=>{
-    console.log("Server is running on port 3000");
+app.listen(5000 , ()=>{
+    console.log("Server is running on port 5000");
 })
